@@ -1,0 +1,25 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Use SSH key to connect to VPS
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+    - name: Run Docker command on VPS
+      run: |
+        ssh root@193.23.55.169 "docker login -u hamzadevops -p ${{ secrets.DOCKERHUB_TOKEN }}"
+        ssh root@193.23.55.169 "docker pull hamzadevops/practic:0.0.1"
+        ssh root@193.23.55.169 "docker run -d -p 80:80 hamzadevops/practic:0.0.1"
