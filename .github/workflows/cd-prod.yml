@@ -1,6 +1,6 @@
 # Continuous Deployment workflow file (cd.yml)
 
-name: Continuous Deployment Pre-Prod & Prod
+name: continuous deployment Prod || Preprod
 
 on:
   workflow_dispatch:
