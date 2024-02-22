@@ -24,6 +24,9 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         
+    - name: Add host key
+      run: ssh-keyscan -H 193.23.55.169 >> ~/.ssh/known_hosts
+        
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u hamzadevops --password-stdin
       
