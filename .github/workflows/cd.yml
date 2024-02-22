@@ -26,6 +26,11 @@ jobs:
         
     - name: Add host key
       run: ssh-keyscan -H 193.23.55.169 >> ~/.ssh/known_hosts
+      
+    - name: Stop and remove existing container
+      run: |
+        docker ps -q --filter "ancestor=hamzadevops/practic:0.0.2" | xargs -r docker stop
+        docker ps -q --filter "ancestor=hamzadevops/practic:0.0.2" | xargs -r docker rm
         
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u hamzadevops --password-stdin
