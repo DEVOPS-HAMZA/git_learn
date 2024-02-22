@@ -12,7 +12,7 @@ jobs:
     env:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      Prod: Production
+      Prod: Prod
 
     steps:
     - name: Checkout code
