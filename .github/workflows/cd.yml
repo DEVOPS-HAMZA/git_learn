@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - master
+      - main
 
 jobs:
   deploy-development:
@@ -41,7 +41,7 @@ jobs:
 
   deploy-preprod:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
 
     environment: 
       name: Pre-production
@@ -73,7 +73,7 @@ jobs:
 
   deploy-prod:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
 
     environment: 
       name: Production
