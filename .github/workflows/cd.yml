@@ -1,10 +1,10 @@
-name: Deploy to VPS
+name: Deployement Integration
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types:
+      - completed
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,11 +26,15 @@ jobs:
         
     - name: Add host key
       run: ssh-keyscan -H 193.23.55.169 >> ~/.ssh/known_hosts
+      
+    - name: Stop and remove existing container
+      run: |
+        ssh root@193.23.55.169 "docker stop nginx && docker  rm -f nginx" || true
         
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u hamzadevops --password-stdin
       
     - name: Run Docker command on VPS
       run: |
-        ssh root@193.23.55.169 "docker pull hamzadevops/practic:0.0.1 "
-        ssh root@193.23.55.169 "docker run hamzadevops/practic:0.0.1"
+        ssh root@193.23.55.169 "docker pull hamzadevops/practic:0.0.2"
+        ssh root@193.23.55.169 "docker run -d -p 80:80 --name nginx hamzadevops/practic:0.0.2"
