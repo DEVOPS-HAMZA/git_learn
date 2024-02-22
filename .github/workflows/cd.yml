@@ -1,4 +1,4 @@
-name: Deployment Integration
+name: Continious Deployement
 
 on:
   push:
