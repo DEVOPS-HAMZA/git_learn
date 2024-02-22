@@ -24,8 +24,4 @@ jobs:
       run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/practic:0.0.2 docker
       
     - name: Push Docker image to Docker Hub
-<<<<<<< HEAD
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/practic:0.0.2
-=======
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/practic:0.0.2
->>>>>>> b3ca5e29c2239d72031884f2378fac70faee5bc8

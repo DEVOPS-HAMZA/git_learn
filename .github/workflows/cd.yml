@@ -37,8 +37,4 @@ jobs:
     - name: Run Docker command on VPS
       run: |
         ssh root@193.23.55.169 "docker pull hamzadevops/practic:0.0.2"
-<<<<<<< HEAD
         ssh root@193.23.55.169 "docker run -d -p 80:80 --name nginx hamzadevops/practic:0.0.2"
-=======
-        ssh root@193.23.55.169 "docker run -d -p 80:80 --name nginx hamzadevops/practic:0.0.2"
->>>>>>> b3ca5e29c2239d72031884f2378fac70faee5bc8
